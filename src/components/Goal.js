@@ -4,12 +4,6 @@ import { Link } from "react-router-dom"
 import Iframe from 'react-iframe'
 import { Button } from 'react-bootstrap';
 
-function linkify(text) {
-    var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-    return text.replace(urlRegex, function(url) {
-        return url
-    });
-}
 
 
 const Goal=() => {
