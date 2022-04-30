@@ -14,7 +14,7 @@ const Goal=() => {
 
         axios.get("https://www.scorebat.com/video-api/v1/").then((response)=>{
             u=Math.floor(Math.random() * (Object.keys(response.data).length - 0) ) + 0;
-            setGoalVideo(response.data[u].videos[0].embed.replace("<div style='width:100%;height:0px;position:relative;padding-bottom:56.250%;'><iframe src='", " " ).replace("</div> 'frameborder='0' width='100%' height='100%' allowfullscreen allow='autoplay; fullscreen' style='width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;'></iframe>", " " ));
+            setGoalVideo(response.data[u].videos[0].embed.replace("<div style='width:100%;height:0px;position:relative;padding-bottom:56.250%;background:#000;'><iframe src='", " " ).replace("frameborder='0' width='100%' height='100%' allowfullscreen allow='autoplay; fullscreen' style='width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;'><\/iframe><\/div>", " " ));
             setGoalTitle(response.data[u].title);
         })
 
