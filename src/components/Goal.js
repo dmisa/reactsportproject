@@ -4,6 +4,14 @@ import { Link } from "react-router-dom"
 import Iframe from 'react-iframe'
 import { Button } from 'react-bootstrap';
 
+function linkify(text) {
+    var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    return text.replace(urlRegex, function(url) {
+        return url
+    });
+}
+
+
 const Goal=() => {
     const [goaltitle , setGoalTitle] = useState("");
     const [goalvideo , setGoalVideo] = useState("");
@@ -14,7 +22,7 @@ const Goal=() => {
 
         axios.get("https://www.scorebat.com/video-api/v1/").then((response)=>{
             u=Math.floor(Math.random() * (Object.keys(response.data).length - 0) ) + 0;
-            setGoalVideo(response.data[u].videos[0].embed.replace("<div style='width:100%;height:0px;position:relative;padding-bottom:56.250%;background:#000;'><iframe src='", " " ).replace("'frameborder='0' width='100%' height='100%' allowfullscreen allow='autoplay; fullscreen' style='width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;'><\/iframe><\/div>", " " ));
+            setGoalVideo(linkify(response.data[u].videos[0].embed)); 
             setGoalTitle(response.data[u].title);
         })
 
